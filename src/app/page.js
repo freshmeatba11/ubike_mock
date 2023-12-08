@@ -6,7 +6,7 @@ import styled from "styled-components";
 const Main = styled.main`
   background-color: #ffffff;
   width: 100svw;
-  height: 100svh;
+  height: calc(100svh - 72px);
 `;
 
 export default function Home() {
