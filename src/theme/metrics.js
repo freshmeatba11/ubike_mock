@@ -12,7 +12,7 @@ const Metrics = {
   media: {
     // mobile: `(max-width: ${DEVICE.mobile}px)`,
     // tablet: `(min-width: ${DEVICE.tablet}px)`,
-    desk: `(min-width: ${DEVICE.mobile + 1}px)`,
+    desk: `(min-width: ${DEVICE.tablet + 1}px)`,
   },
 };
 

@@ -3,12 +3,13 @@ import Image from "next/image";
 import { useState } from "react";
 import styled from "styled-components";
 
-import { MenuButton } from "./menuButton";
-import { MenuNav } from "./menuNav";
+import Metrics from "@/theme/metrics";
 
 import CloseSvg from "@/assets/images/icons/close_24px.svg";
 import MenuSvg from "@/assets/images/icons/menu_24px.svg";
 import LogoPng from "@/assets/images/logo_180x180.png";
+import { MenuButton } from "./menuButton";
+import { MenuNav } from "./menuNav";
 
 const HeaderWrapper = styled.header`
   width: 100%;
@@ -17,13 +18,29 @@ const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid var(--header-border-color);
   position: relative;
   background: var(--header-background);
 
   img {
     margin-top: 7px;
   }
+  @media ${Metrics.media.desk} {
+    max-width: 1192px;
+    height: 104px;
+    margin: 0 auto;
+    justify-content: flex-start;
+    gap: 60px;
+
+    img {
+      margin-top: 6px;
+      width: 95px;
+      height: 95px;
+    }
+  }
+`;
+const HeaderDivider = styled.hr`
+  border-bottom: 1px solid var(--header-border-color);
+  border-top: 0px;
 `;
 
 export const Header = () => {
@@ -32,14 +49,17 @@ export const Header = () => {
   const handleMenuClick = () => setIsMenuOpen((prev) => !prev);
 
   return (
-    <HeaderWrapper>
-      <Image src={LogoPng} alt="logo" width={65} height={65} />
+    <>
+      <HeaderWrapper>
+        <Image src={LogoPng} alt="logo" width={65} height={65} />
 
-      {isMenuOpen && <MenuNav setIsMenuOpen={setIsMenuOpen} />}
+        <MenuNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
-      <MenuButton onClick={handleMenuClick}>
-        {isMenuOpen ? <CloseSvg /> : <MenuSvg />}
-      </MenuButton>
-    </HeaderWrapper>
+        <MenuButton onClick={handleMenuClick}>
+          {isMenuOpen ? <CloseSvg /> : <MenuSvg />}
+        </MenuButton>
+      </HeaderWrapper>
+      <HeaderDivider />
+    </>
   );
 };
