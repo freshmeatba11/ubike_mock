@@ -2,7 +2,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-import Styles from "@/components/styles";
+import Styles from "@/theme/styles";
 
 const Wrapper = styled(Styles.main())`
   display: flex;

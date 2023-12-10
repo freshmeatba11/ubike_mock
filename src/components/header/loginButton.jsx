@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Styles from "../styles";
+import Styles from "../../theme/styles";
 
 const Wrapper = styled(Styles.button())`
   padding: 10px 24px;

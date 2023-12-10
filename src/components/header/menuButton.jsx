@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Styles from "../styles";
+import Styles from "@/theme/styles";
 
 const MenuButtonWrapper = styled(Styles.button())`
   width: 24px;
