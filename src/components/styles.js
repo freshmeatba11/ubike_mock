@@ -9,6 +9,7 @@ const Styles = {
   button: () => styled.button`
     background-color: var(--header-button-color);
     border: none;
+    cursor: pointer;
   `,
 };
 export default Styles;

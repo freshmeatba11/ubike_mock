@@ -1,0 +1,10 @@
+[
+  {
+    "text": "使用說明",
+    "url": "/information"
+  },
+  { "text": "收費方式", "url": "/fee" },
+  { "text": "站點資訊", "url": "/" },
+  { "text": "最新消息", "url": "/news" },
+  { "text": "活動專區", "url": "/events" }
+]
