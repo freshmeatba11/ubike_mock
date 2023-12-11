@@ -1,8 +1,11 @@
 :root {
   --white-01: #ffffff;
   --white-02: #ebebeb;
+  --white-03: #f6f6f6;
   --green-01: #b5cc22;
   --green-02: #677510;
+  --black-01: #aeaeae;
+  --black-02: #323232;
 
   --main-background: var(--white-01, #ffffff);
   --header-text: var(--white-01, #ffffff);
@@ -13,6 +16,13 @@
   --header-button-color: var(--white-01, #ffffff);
   --header-button-text: var(--green-01, #b5cc22);
   --header-icon: var(--green-01, #b5cc22);
+
+  --page-title-color: var(--green-01, #b5cc22);
+
+  --input-background-color: var(--white-03, #f6f6f6);
+  --input-text-color: var(--black-02, #323232);
+  --input-placeholder-color: var(--black-01, #aeaeae);
+  --input-text-selected-color: var(--green-01, #b5cc22);
 
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",

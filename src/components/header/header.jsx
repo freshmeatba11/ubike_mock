@@ -20,6 +20,7 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   position: relative;
   background: var(--header-background);
+  z-index: 99999;
 
   img {
     margin-top: 7px;

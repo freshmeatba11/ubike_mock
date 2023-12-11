@@ -1,0 +1,62 @@
+[
+  {
+    "value": "TPE",
+    "label": "台北市",
+    "cityEngName": "Taipei City"
+  },
+  {
+    "value": "TPH",
+    "label": "新北市",
+    "cityEngName": "New Taipei City"
+  },
+  {
+    "value": "TYC",
+    "label": "桃園市",
+    "cityEngName": "Taoyuan City"
+  },
+  {
+    "value": "HSH",
+    "label": "新竹縣",
+    "cityEngName": "Hsinchu County"
+  },
+  {
+    "value": "HSC",
+    "label": "新竹市",
+    "cityEngName": "Hsinchu City"
+  },
+  {
+    "value": "HSSI",
+    "label": "新竹科學園區",
+    "cityEngName": "Hsinchu Science and Industrial Park"
+  },
+  {
+    "value": "MAL",
+    "label": "苗栗縣",
+    "cityEngName": "Miaoli County"
+  },
+  {
+    "value": "TXG",
+    "label": "台中市",
+    "cityEngName": "Taichung City"
+  },
+  {
+    "value": "CYI",
+    "label": "嘉義市",
+    "cityEngName": "Chiayi City"
+  },
+  {
+    "value": "TNN",
+    "label": "台南市",
+    "cityEngName": "Tainan City"
+  },
+  {
+    "value": "KHH",
+    "label": "高雄市",
+    "cityEngName": "Kaohsiung City"
+  },
+  {
+    "value": "IUH",
+    "label": "屏東縣",
+    "cityEngName": "Pingtung County"
+  }
+]
