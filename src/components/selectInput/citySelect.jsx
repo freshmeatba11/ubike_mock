@@ -21,10 +21,10 @@ const config = {
   styles: {},
   components: { DropdownIndicator, IndicatorSeparator: null },
 };
-export const CitySelect = () => {
+export const CitySelect = ({ control }) => {
   return (
     <div>
-      <SelectInput {...config} />
+      <SelectInput {...config} control={control} />
     </div>
   );
 };

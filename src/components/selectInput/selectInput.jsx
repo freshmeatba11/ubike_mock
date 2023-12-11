@@ -1,6 +1,8 @@
+import { Controller } from "react-hook-form";
 import Select from "react-select";
 
 export const SelectInput = ({
+  control,
   id,
   placeholder,
   options,
@@ -73,5 +75,13 @@ export const SelectInput = ({
     ...config,
   };
 
-  return <Select {...selectConfig} />;
+  return (
+    <Controller
+      name={`form_${id}`}
+      control={control}
+      render={({ field: { onChange, value, ref }, fieldState }) => (
+        <Select {...selectConfig} onChange={onChange} />
+      )}
+    />
+  );
 };

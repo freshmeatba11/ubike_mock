@@ -1,4 +1,5 @@
 "use client";
+import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import Metrics from "@/theme/metrics";
@@ -25,12 +26,16 @@ const TitleText = styled.h2`
 `;
 
 export default function Home() {
+  const { handleSubmit, control, errors, watch } = useForm();
+  const ans = watch("form_city");
+
   return (
     <Main>
       <TitleText>站點資訊</TitleText>
       <div>
         {/* //todo: 縣市 */}
-        <CitySelect />
+        <CitySelect {...{ control }} />
+        {ans && ans.label}
         {/* //todo: 站點 */}
       </div>
       <div>
