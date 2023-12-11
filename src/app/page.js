@@ -14,5 +14,18 @@ const Main = styled.main`
 `;
 
 export default function Home() {
-  return <Main>hi</Main>;
+  return (
+    <Main>
+      <p>站點資訊</p>
+      <div>
+        {/* //todo: 縣市 */}
+        {/* //todo: 站點 */}
+      </div>
+      <div>
+        {/* //todo: checkbox */}
+        {/* //todo: img */}
+      </div>
+      {/* //todo: table */}
+    </Main>
+  );
 }
