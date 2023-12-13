@@ -24,6 +24,10 @@
   --input-placeholder-color: var(--black-01, #aeaeae);
   --input-text-selected-color: var(--green-01, #b5cc22);
 
+  --checkbox-text-color: var(--black-02, #323232);
+  --checkbox-color: var(--black-01, #aeaeae);
+  --checkbox-checked-color: var(--green-01, #b5cc22);
+
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
