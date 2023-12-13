@@ -20,11 +20,8 @@ export const StationSelect = ({ control, options }) => {
     options: options,
     styles: {},
     components: { DropdownIndicator, IndicatorSeparator: null },
+    classname: "station",
   };
 
-  return (
-    <div>
-      <SelectInput {...config} control={control} />
-    </div>
-  );
+  return <SelectInput {...config} control={control} />;
 };

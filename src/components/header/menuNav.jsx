@@ -9,7 +9,7 @@ import { NavItem } from "./navItem";
 
 const MenuWrapper = styled.div`
   width: 100%;
-  height: calc(100svh - 72px);
+  height: calc(100svh - 73px);
   background: var(--header-nav-background);
   padding: 32px;
 

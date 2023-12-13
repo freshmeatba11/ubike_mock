@@ -1,6 +1,19 @@
 import { Controller } from "react-hook-form";
 import Select from "react-select";
+import styled from "styled-components";
 
+import Metrics from "@/theme/metrics";
+
+const SelectWrapper = styled.div`
+  @media ${Metrics.media.desk} {
+    &.station {
+      width: 277px;
+    }
+    &.city {
+      width: 220px;
+    }
+  }
+`;
 export const SelectInput = ({
   control,
   id,
@@ -8,6 +21,7 @@ export const SelectInput = ({
   options,
   styles,
   components,
+  classname,
   ...config
 }) => {
   const selectConfig = {
@@ -76,12 +90,14 @@ export const SelectInput = ({
   };
 
   return (
-    <Controller
-      name={`form_${id}`}
-      control={control}
-      render={({ field: { onChange, value, ref }, fieldState }) => (
-        <Select {...selectConfig} onChange={onChange} />
-      )}
-    />
+    <SelectWrapper className={classname}>
+      <Controller
+        name={`form_${id}`}
+        control={control}
+        render={({ field: { onChange, value, ref }, fieldState }) => (
+          <Select {...selectConfig} onChange={onChange} />
+        )}
+      />
+    </SelectWrapper>
   );
 };

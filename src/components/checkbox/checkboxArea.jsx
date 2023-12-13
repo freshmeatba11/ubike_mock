@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 import { Checkbox } from "@/components/checkbox/checkbox";
 
+const CheckboxAreaWrapper = styled.div`
+  padding-top: 16px;
+`;
 const CheckboxFlex = styled.div`
   padding-top: 8px;
   display: flex;
@@ -15,7 +18,7 @@ const CheckboxFlex = styled.div`
 
 export const CheckboxArea = ({ control, options }) => {
   return (
-    <div>
+    <CheckboxAreaWrapper>
       <Checkbox {...{ control, name: "all", label: "全部勾選" }} />
       <CheckboxFlex>
         {options.map((dist, index) => {
@@ -24,6 +27,6 @@ export const CheckboxArea = ({ control, options }) => {
           );
         })}
       </CheckboxFlex>
-    </div>
+    </CheckboxAreaWrapper>
   );
 };
