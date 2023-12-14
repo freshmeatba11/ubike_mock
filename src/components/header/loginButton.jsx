@@ -7,6 +7,7 @@ const Wrapper = styled(Styles.button())`
   padding: 10px 24px;
   border-radius: 100px;
   font-size: 16px;
+  font-weight: 400;
   background: var(--header-button-color);
   color: var(--header-button-text);
   flex-shrink: 0;
