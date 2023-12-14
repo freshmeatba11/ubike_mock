@@ -26,14 +26,38 @@ const CheckboxFlex = styled.div`
   }
 `;
 
-export const CheckboxArea = ({ control, options }) => {
+export const CheckboxArea = ({
+  control,
+  options,
+  handleChangeSelectAll,
+  handleSelectAllOnClick,
+  disabled,
+}) => {
   return (
     <CheckboxAreaWrapper>
-      <Checkbox {...{ control, name: "all", label: "全部勾選" }} />
+      <Checkbox
+        {...{
+          control,
+          name: `form_dist.all`,
+          label: "全部勾選",
+          defaultValue: true,
+          handleSelectAllOnClick,
+          disabled,
+        }}
+      />
       <CheckboxFlex>
         {options.map((dist, index) => {
           return (
-            <Checkbox {...{ control, name: dist, label: dist }} key={dist} />
+            <Checkbox
+              {...{
+                control,
+                name: `form_dist.${dist}`,
+                label: dist,
+                handleChangeSelectAll,
+                disabled,
+              }}
+              key={dist}
+            />
           );
         })}
       </CheckboxFlex>

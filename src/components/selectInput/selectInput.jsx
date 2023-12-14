@@ -95,7 +95,7 @@ export const SelectInput = ({
         name={`form_${id}`}
         control={control}
         render={({ field: { onChange, value, ref }, fieldState }) => (
-          <Select {...selectConfig} onChange={onChange} />
+          <Select {...selectConfig} onChange={onChange} value={value} />
         )}
       />
     </SelectWrapper>

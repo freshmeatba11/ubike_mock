@@ -4,14 +4,33 @@ import { Controller } from "react-hook-form";
 import styled from "styled-components";
 
 const Wrapper = styled.div``;
-export const Checkbox = ({ control, name, label }) => {
+export const Checkbox = ({
+  control,
+  name,
+  label,
+  defaultValue = false,
+  handleChangeSelectAll = () => {},
+  handleSelectAllOnClick = () => {},
+  disabled,
+}) => {
   return (
     <Controller
       control={control}
-      name={`dist.${name}`}
+      name={name}
+      defaultValue={defaultValue}
       render={({ field: { onChange, onBlur, value, ref } }) => (
         <Wrapper>
           <FormControlLabel
+            {...{
+              onChange: (e) => {
+                handleChangeSelectAll({ trigger: e.target.checked, name });
+                onChange(e);
+              },
+              onBlur,
+              checked: value,
+              ref,
+            }}
+            disabled={disabled}
             sx={{
               margin: 0,
               gap: "5px",
@@ -29,11 +48,8 @@ export const Checkbox = ({ control, name, label }) => {
             label={label}
             control={
               <MuiCheckbox
-                {...{
-                  onChange,
-                  onBlur,
-                  value,
-                  ref,
+                onClick={(e) => {
+                  handleSelectAllOnClick({ trigger: e.target.checked });
                 }}
                 sx={{
                   padding: "8px",
@@ -43,6 +59,7 @@ export const Checkbox = ({ control, name, label }) => {
                   },
                   "& .MuiSvgIcon-root": { width: 24, height: 24 },
                 }}
+                disableRipple
               />
             }
           />
