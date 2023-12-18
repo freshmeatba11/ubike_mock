@@ -8,6 +8,7 @@ import Metrics from "@/theme/metrics";
 import { CheckboxArea } from "@/components/checkbox/checkboxArea";
 import { ImageWall } from "@/components/imageWall";
 import { SelectArea } from "@/components/selectInput/selectArea";
+import { StationTable } from "@/components/table/stationTable";
 
 import fakeData from "@/constants/fake.json";
 
@@ -78,9 +79,12 @@ export default function Home() {
 
   const stationList = selectCity
     ? selectCity.value === "TPE"
-      ? fakeData
-          .filter((item) => selectDist[item.sarea] === true)
-          .reduce(
+      ? selectStation
+        ? [
+            fakeData.find(
+              (item) => item.sna.split("2.0_")[1] === selectStation.label
+            ),
+          ].reduce(
             (acc, cur) => {
               const stationName = cur.sna.replace("YouBike2.0_", "");
               return {
@@ -99,6 +103,30 @@ export default function Home() {
             },
             { list: [], table: [] }
           )
+        : fakeData
+            .filter((item) => selectDist[item.sarea] === true)
+            .reduce(
+              (acc, cur) => {
+                const stationName = cur.sna.replace("YouBike2.0_", "");
+                return {
+                  list: [
+                    ...acc.list,
+                    { label: stationName, value: stationName },
+                  ],
+                  table: [
+                    ...acc.table,
+                    {
+                      city: selectCity.label,
+                      dist: cur.sarea,
+                      stationName,
+                      parklingLot: cur.bemp,
+                      available: cur.sbi,
+                    },
+                  ],
+                };
+              },
+              { list: [], table: [] }
+            )
       : {
           list: [{ label: "XX站點", value: "XX站點" }],
           table: [
@@ -153,7 +181,7 @@ export default function Home() {
         />
       </ImageWall>
       {/* //todo: table */}
-      {stationList.table.length}
+      <StationTable {...{ rows: stationList.table }} />
     </Main>
   );
 }
