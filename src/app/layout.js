@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import Providers from "@/lib/provider";
 import StyledComponentsRegistry from "@/lib/registry";
 
 import { Header } from "@/components/header/header";
@@ -16,10 +17,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className} style={{ position: "relative" }}>
-        <StyledComponentsRegistry>
-          <Header />
-          {children}
-        </StyledComponentsRegistry>
+        <Providers>
+          <StyledComponentsRegistry>
+            <Header />
+            {children}
+          </StyledComponentsRegistry>
+        </Providers>
       </body>
     </html>
   );

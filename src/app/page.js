@@ -1,8 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import styled from "styled-components";
 
+import { useGetUbikeList } from "@/features/useGetUbikeList";
 import Metrics from "@/theme/metrics";
 import Styles from "@/theme/styles";
 
@@ -10,8 +11,6 @@ import { CheckboxArea } from "@/components/checkbox/checkboxArea";
 import { ImageWall } from "@/components/imageWall";
 import { SelectArea } from "@/components/selectInput/selectArea";
 import { StationTable } from "@/components/table/stationTable";
-
-import fakeData from "@/constants/fake.json";
 
 const Main = styled(Styles.main())``;
 const TitleText = styled.h2`
@@ -28,8 +27,7 @@ const TitleText = styled.h2`
 `;
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const { control, errors, setValue, resetField } = useForm({
+  const { control, setValue, resetField } = useForm({
     defaultValues: {
       form_city: { value: "TPE", label: "台北市" },
       form_station: null,
@@ -46,93 +44,90 @@ export default function Home() {
     });
   };
 
-  useEffect(() => {
-    //城市變動時 清空站點
-    resetField("form_station");
-    //城市變動時 清空行政區
-    Object.keys(selectDist)?.forEach((dist) => {
-      setValue(`form_dist.${dist}`, false);
-    });
-    //城市變動時 預設全選行政區
-    resetField("form_dist.all");
-    makeAllDistChecked(true);
-  }, [selectCity]);
+  const { data, isLoading } = useGetUbikeList();
 
-  //! fakeData api
-  const districtList = selectCity
-    ? selectCity.value === "TPE"
-      ? Array.from(new Set(fakeData.map((item) => item.sarea)))
-      : ["XX區"]
-    : [];
+  const ubikeList = data?.data;
 
-  const stationList = selectCity
-    ? selectCity.value === "TPE"
-      ? selectStation
-        ? [
-            fakeData.find(
-              (item) => item.sna.split("2.0_")[1] === selectStation.label
-            ),
-          ].reduce(
-            (acc, cur) => {
-              const stationName = cur.sna.replace("YouBike2.0_", "");
-              return {
-                list: [...acc.list, { label: stationName, value: stationName }],
-                table: [
-                  ...acc.table,
-                  {
-                    city: selectCity.label,
-                    dist: cur.sarea,
-                    stationName,
-                    parklingLot: cur.bemp,
-                    available: cur.sbi,
-                  },
-                ],
-              };
-            },
-            { list: [], table: [] }
-          )
-        : fakeData
-            .filter((item) => selectDist[item.sarea] === true)
-            .reduce(
-              (acc, cur) => {
-                const stationName = cur.sna.replace("YouBike2.0_", "");
-                return {
-                  list: [
-                    ...acc.list,
-                    { label: stationName, value: stationName },
-                  ],
-                  table: [
-                    ...acc.table,
-                    {
-                      city: selectCity.label,
-                      dist: cur.sarea,
-                      stationName,
-                      parklingLot: cur.bemp,
-                      available: cur.sbi,
-                    },
-                  ],
-                };
-              },
-              { list: [], table: [] }
-            )
-      : {
-          list: [{ label: "XX站點", value: "XX站點" }],
-          table: [
-            {
-              city: selectCity.label,
-              dist: "XX區",
-              stationName: "XX站點",
-              parklingLot: 0,
-              available: 0,
-            },
-          ],
-        }
-    : {
+  const districtList = (() => {
+    if (!ubikeList) return [];
+    if (!selectCity) return [];
+    if (selectCity.value === "TPE")
+      return Array.from(new Set(ubikeList.map((item) => item.sarea)));
+    return ["XX區"];
+  })();
+
+  const stationList = (() => {
+    if (!ubikeList)
+      return {
+        list: [],
+        table: [],
+      };
+    if (!selectCity)
+      return {
         list: [],
         table: [],
       };
 
-  //! fakeData api
+    if (selectCity.value !== "TPE")
+      return {
+        list: [{ label: "XX站點", value: "XX站點" }],
+        table: [
+          {
+            city: selectCity.label,
+            dist: "XX區",
+            stationName: "XX站點",
+            parklingLot: 0,
+            available: 0,
+          },
+        ],
+      };
+
+    if (selectStation)
+      return [
+        ubikeList.find(
+          (item) => item.sna.split("2.0_")[1] === selectStation.label
+        ),
+      ].reduce(
+        (acc, cur) => {
+          const stationName = cur.sna.replace("YouBike2.0_", "");
+          return {
+            list: [...acc.list, { label: stationName, value: stationName }],
+            table: [
+              ...acc.table,
+              {
+                city: selectCity.label,
+                dist: cur.sarea,
+                stationName,
+                parklingLot: cur.bemp,
+                available: cur.sbi,
+              },
+            ],
+          };
+        },
+        { list: [], table: [] }
+      );
+    return ubikeList
+      .filter((item) => selectDist[item.sarea] === true)
+      .reduce(
+        (acc, cur) => {
+          const stationName = cur.sna.replace("YouBike2.0_", "");
+          return {
+            list: [...acc.list, { label: stationName, value: stationName }],
+            table: [
+              ...acc.table,
+              {
+                city: selectCity.label,
+                dist: cur.sarea,
+                stationName,
+                parklingLot: cur.bemp,
+                available: cur.sbi,
+              },
+            ],
+          };
+        },
+        { list: [], table: [] }
+      );
+  })();
 
   const handleChangeSelectAllCheckbox = ({ trigger, name }) => {
     //* 按下checkbox時，調整 ”全部勾選“ 的狀態
@@ -151,25 +146,41 @@ export default function Home() {
     makeAllDistChecked(trigger);
   };
 
+  useEffect(() => {
+    //城市變動時 清空站點
+    resetField("form_station");
+    //城市變動時 清空行政區
+    Object.keys(selectDist)?.forEach((dist) => {
+      setValue(`form_dist.${dist}`, false);
+    });
+    //城市變動時 預設全選行政區
+    resetField("form_dist.all");
+    makeAllDistChecked(true);
+  }, [selectCity, ubikeList]);
+
   return (
     <Main>
       <TitleText>站點資訊</TitleText>
 
-      <SelectArea {...{ control, options: stationList.list }} />
+      {ubikeList && (
+        <>
+          <SelectArea {...{ control, options: stationList.list }} />
 
-      <ImageWall>
-        <CheckboxArea
-          {...{
-            control,
-            options: districtList,
-            handleChangeSelectAll: handleChangeSelectAllCheckbox,
-            handleSelectAllOnClick: handleSelectAllCheckboxOnClick,
-            disabled: isLoading,
-          }}
-        />
-      </ImageWall>
-      {/* //todo: table */}
-      <StationTable {...{ rows: stationList.table }} />
+          <ImageWall>
+            <CheckboxArea
+              {...{
+                control,
+                options: districtList,
+                handleChangeSelectAll: handleChangeSelectAllCheckbox,
+                handleSelectAllOnClick: handleSelectAllCheckboxOnClick,
+                disabled: isLoading,
+              }}
+            />
+          </ImageWall>
+
+          <StationTable {...{ rows: stationList.table }} />
+        </>
+      )}
     </Main>
   );
 }
