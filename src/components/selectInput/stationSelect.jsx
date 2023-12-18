@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { components } from "react-select";
 
-import ArrowDownSvg from "@/assets/images/icons/icon.svg";
+import SearchSvg from "@/assets/images/icons/search_24px.svg";
 import { SelectInput } from "./selectInput";
 
 const DropdownIndicator = (props) => {
   return (
     <components.DropdownIndicator {...props}>
-      <ArrowDownSvg />
+      <SearchSvg />
     </components.DropdownIndicator>
   );
 };
