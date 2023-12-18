@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -66,7 +67,14 @@ export const Header = () => {
   return (
     <>
       <HeaderWrapper>
-        <Image src={LogoPng} alt="logo" width={65} height={65} />
+        <Link href={"/"}>
+          <Image
+            src={LogoPng}
+            width={65}
+            height={65}
+            alt="YouBike 微笑單車 logo，點擊可回到首頁"
+          />
+        </Link>
 
         <MenuNav isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 
