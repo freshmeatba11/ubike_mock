@@ -10,32 +10,34 @@ const StationTableWrapper = styled.div`
 
   .MuiDataGrid-root {
     --unstable_DataGrid-radius: 8px;
-  }
-  .MuiDataGrid-columnHeaders {
-    background-color: var(--table-col-headers-background-color);
-    font-size: 16px;
-    color: #fff;
-  }
-  .MuiDataGrid-columnSeparator {
-    display: none;
-  }
-  .MuiDataGrid-iconButtonContainer {
-    display: none;
-  }
 
-  .odd {
-    background-color: var(--table-background-color-odd);
-  }
-  .even {
-    background-color: var(--table-background-color-even);
-  }
+    .MuiDataGrid-cell {
+      padding: 12px 10px;
+      border: none;
+    }
 
-  .MuiDataGrid-cell {
-    padding-block: 12px;
-    border: none;
-  }
-  .number-text {
-    color: var(--table-number-text-color);
+    .MuiDataGrid-columnHeaders {
+      background-color: var(--table-col-headers-background-color);
+      font-size: 16px;
+      color: #fff;
+    }
+    .MuiDataGrid-columnSeparator {
+      display: none;
+    }
+    .MuiDataGrid-iconButtonContainer {
+      display: none;
+    }
+
+    .odd {
+      background-color: var(--table-background-color-odd);
+    }
+    .even {
+      background-color: var(--table-background-color-even);
+    }
+
+    .number-text {
+      color: var(--table-number-text-color);
+    }
   }
 
   @media ${Metrics.media.desk} {
@@ -44,13 +46,14 @@ const StationTableWrapper = styled.div`
 
     .MuiDataGrid-root {
       --unstable_DataGrid-radius: 28px;
-    }
-    .MuiDataGrid-columnHeaders {
-      font-size: 18px;
-    }
-    .MuiDataGrid-cell {
-      font-size: 16px;
-      padding-block: 24px;
+
+      .MuiDataGrid-cell {
+        font-size: 16px;
+        padding: 24px 10px;
+      }
+      .MuiDataGrid-columnHeaders {
+        font-size: 18px;
+      }
     }
   }
 `;
@@ -107,7 +110,7 @@ export const StationTable = ({ rows }) => {
           params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
         }
         getRowHeight={() => "auto"}
-        columnHeaderHeight="66"
+        columnHeaderHeight={66}
         rowSpacingType="border"
       />
     </StationTableWrapper>

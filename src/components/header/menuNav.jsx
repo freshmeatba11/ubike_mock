@@ -9,13 +9,14 @@ import { NavItem } from "./navItem";
 
 const MenuWrapper = styled.div`
   width: 100%;
-  height: calc(100svh - 73px);
+  height: calc(100dvh - 73px);
   background: var(--header-nav-background);
   padding: 32px;
 
   position: absolute;
   top: 73px;
   left: 0;
+  bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
