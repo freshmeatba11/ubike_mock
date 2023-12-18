@@ -5,8 +5,8 @@ import Metrics from "@/theme/metrics";
 
 const StationTableWrapper = styled.div`
   width: 100%;
-  height: calc(90svh + 44px);
-  padding: 24px 0 44px 0;
+  height: calc(90svh + 34px);
+  padding: 24px 0 34px 0;
 
   .MuiDataGrid-root {
     --unstable_DataGrid-radius: 8px;
@@ -39,7 +39,8 @@ const StationTableWrapper = styled.div`
   }
 
   @media ${Metrics.media.desk} {
-    padding: 40px 0 34px 0;
+    height: calc(85svh + 44px);
+    padding: 40px 0 44px 0;
 
     .MuiDataGrid-root {
       --unstable_DataGrid-radius: 28px;

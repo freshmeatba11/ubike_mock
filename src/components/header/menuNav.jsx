@@ -14,7 +14,7 @@ const MenuWrapper = styled.div`
   padding: 32px;
 
   position: absolute;
-  top: 72px;
+  top: 73px;
   left: 0;
   display: flex;
   flex-direction: column;

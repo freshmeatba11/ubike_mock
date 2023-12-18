@@ -12,19 +12,23 @@ import { MenuButton } from "./menuButton";
 import { MenuNav } from "./menuNav";
 
 const HeaderWrapper = styled.header`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
   width: 100%;
   height: 72px;
+  background: var(--header-background);
   padding-inline: 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
-  background: var(--header-background);
   z-index: 99999;
 
   img {
     margin-top: 7px;
   }
+
   @media ${Metrics.media.desk} {
     max-width: 1192px;
     height: 104px;
@@ -40,8 +44,18 @@ const HeaderWrapper = styled.header`
   }
 `;
 const HeaderDivider = styled.hr`
+  z-index: 99999;
+  position: fixed;
+  top: 72px;
+  width: 100%;
+
   border-bottom: 1px solid var(--header-border-color);
+  border-inline-width: 0px;
   border-top: 0px;
+
+  @media ${Metrics.media.desk} {
+    top: 104px;
+  }
 `;
 
 export const Header = () => {

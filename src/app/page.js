@@ -4,6 +4,7 @@ import { useForm, useWatch } from "react-hook-form";
 import styled from "styled-components";
 
 import Metrics from "@/theme/metrics";
+import Styles from "@/theme/styles";
 
 import { CheckboxArea } from "@/components/checkbox/checkboxArea";
 import { ImageWall } from "@/components/imageWall";
@@ -12,20 +13,7 @@ import { StationTable } from "@/components/table/stationTable";
 
 import fakeData from "@/constants/fake.json";
 
-const Main = styled.main`
-  background-color: #ffffff;
-  width: 100svw;
-  height: calc(100svh - 73px);
-
-  @media ${Metrics.media.desk} {
-    max-width: 1192px;
-    height: calc(100svh - 104px);
-    margin: 0 auto;
-  }
-
-  padding-inline: 32px;
-  padding-top: 34px;
-`;
+const Main = styled(Styles.main())``;
 const TitleText = styled.h2`
   font-size: 18px;
   color: var(--page-title-color);
