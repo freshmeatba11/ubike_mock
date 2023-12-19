@@ -91,10 +91,11 @@ const columns = columnsConfig.map((column) => ({
   ...column,
 }));
 
-export const StationTable = ({ rows }) => {
+export const StationTable = ({ rows, isLoading }) => {
   return (
     <StationTableWrapper>
       <DataGrid
+        loading={isLoading}
         rows={rows}
         columns={columns}
         disableColumnMenu
@@ -105,7 +106,6 @@ export const StationTable = ({ rows }) => {
         disableRowSelectionOnClick
         getRowId={(row) => row.stationName}
         // autoPageSize
-        loading={false}
         getRowClassName={(params) =>
           params.indexRelativeToCurrentPage % 2 === 0 ? "even" : "odd"
         }

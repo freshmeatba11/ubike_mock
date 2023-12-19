@@ -18,11 +18,11 @@ const SelectWrapper = styled.div`
   }
 `;
 
-export const SelectArea = ({ control, options }) => {
+export const SelectArea = ({ control, options, isLoading }) => {
   return (
     <SelectWrapper>
-      <StationSelect {...{ control, options }} />
-      <CitySelect {...{ control }} />
+      <StationSelect {...{ control, options, isLoading }} />
+      <CitySelect {...{ control, isLoading }} />
     </SelectWrapper>
   );
 };

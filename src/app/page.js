@@ -162,25 +162,25 @@ export default function Home() {
     <Main>
       <TitleText>站點資訊</TitleText>
 
-      {ubikeList && (
-        <>
-          <SelectArea {...{ control, options: stationList.list }} />
+      <SelectArea
+        {...{ control, options: isLoading ? [] : stationList.list, isLoading }}
+      />
 
-          <ImageWall>
-            <CheckboxArea
-              {...{
-                control,
-                options: districtList,
-                handleChangeSelectAll: handleChangeSelectAllCheckbox,
-                handleSelectAllOnClick: handleSelectAllCheckboxOnClick,
-                disabled: isLoading,
-              }}
-            />
-          </ImageWall>
+      <ImageWall>
+        <CheckboxArea
+          {...{
+            control,
+            options: isLoading ? [] : districtList,
+            handleChangeSelectAll: handleChangeSelectAllCheckbox,
+            handleSelectAllOnClick: handleSelectAllCheckboxOnClick,
+            disabled: isLoading,
+          }}
+        />
+      </ImageWall>
 
-          <StationTable {...{ rows: stationList.table }} />
-        </>
-      )}
+      <StationTable
+        {...{ rows: isLoading ? [] : stationList.table, isLoading }}
+      />
     </Main>
   );
 }

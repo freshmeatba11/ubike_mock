@@ -13,7 +13,7 @@ const DropdownIndicator = (props) => {
   );
 };
 
-export const StationSelect = ({ control, options }) => {
+export const StationSelect = ({ control, options, isLoading }) => {
   const config = {
     id: "station",
     placeholder: "搜尋站點",
@@ -21,6 +21,8 @@ export const StationSelect = ({ control, options }) => {
     styles: {},
     components: { DropdownIndicator, IndicatorSeparator: null },
     classname: "station",
+    isLoading,
+    isDisabled: isLoading,
   };
 
   return <SelectInput {...config} control={control} />;

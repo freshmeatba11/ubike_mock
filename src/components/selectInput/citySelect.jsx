@@ -22,6 +22,13 @@ const config = {
   components: { DropdownIndicator, IndicatorSeparator: null },
   classname: "city",
 };
-export const CitySelect = ({ control }) => {
-  return <SelectInput {...config} control={control} />;
+export const CitySelect = ({ control, isLoading }) => {
+  return (
+    <SelectInput
+      {...config}
+      control={control}
+      isLoading={isLoading}
+      isDisabled={isLoading}
+    />
+  );
 };

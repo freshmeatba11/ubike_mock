@@ -32,10 +32,6 @@
   --table-background-color-odd: var(--white-03, #f6f6f6);
   --table-background-color-even: var(--white-01, #ffffff);
   --table-number-text-color: var(--green-01, #b5cc22);
-
-  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
 }
 
 * {
