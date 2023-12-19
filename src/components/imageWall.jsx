@@ -7,6 +7,7 @@ import bikePng from "@/assets/images/bike.png";
 
 const ImageWallWrapper = styled.div`
   display: flex;
+  user-select: none;
 `;
 const ImageWrapper = styled.div`
   display: none;

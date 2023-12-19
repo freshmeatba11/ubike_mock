@@ -9,6 +9,7 @@ const Wrapper = styled(Styles.main())`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  user-select: none;
   p {
     font-size: 18px;
   }

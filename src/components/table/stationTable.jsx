@@ -20,6 +20,7 @@ const StationTableWrapper = styled.div`
       background-color: var(--table-col-headers-background-color);
       font-size: 16px;
       color: #fff;
+      user-select: none;
     }
     .MuiDataGrid-columnSeparator {
       display: none;
@@ -37,6 +38,9 @@ const StationTableWrapper = styled.div`
 
     .number-text {
       color: var(--table-number-text-color);
+    }
+    .MuiDataGrid-footerContainer {
+      user-select: none;
     }
   }
 

@@ -18,6 +18,7 @@ const TitleText = styled.h2`
   color: var(--page-title-color);
   letter-spacing: 2.5px;
   margin-bottom: 16px;
+  user-select: none;
 
   @media ${Metrics.media.desk} {
     font-size: 24px;
@@ -156,6 +157,7 @@ export default function Home() {
     //城市變動時 預設全選行政區
     resetField("form_dist.all");
     makeAllDistChecked(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectCity, ubikeList]);
 
   return (
